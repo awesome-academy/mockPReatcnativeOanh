@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953539032073",
+    "project_id": "mock-pj-reactnative-oanh",
+    "storage_bucket": "mock-pj-reactnative-oanh.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953539032073:android:908aceb5273fdb4ca8f4d8",
+        "android_client_info": {
+          "package_name": "com.mockpreactnativeoanh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxNmWoZ03WGhIPwr8wwkQgOLotyfA4puo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
