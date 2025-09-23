@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Alert,
   Image,
@@ -10,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { signUp } from '@/services/auth';
+import { loginWithGoogle, signUp } from '@/services/auth';
 import {
   getAuthErrorMessage,
   validateAuthData,
@@ -24,6 +25,7 @@ import AppButton from '@/components/atoms/AppButton';
 import GoogleIcon from '@/assets/svgs/google.svg';
 import EyeFilledIcon from '@/assets/svgs/eye-filled.svg';
 import EyeInvisibleFilledIcon from '@/assets/svgs/eye-invisible-filled.svg';
+import { login } from '@/stores/auth';
 
 type RegisterScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -31,6 +33,8 @@ type RegisterScreenProps = NativeStackScreenProps<
 >;
 
 export default function RegisterScreen({ navigation }: RegisterScreenProps) {
+  const dispatch = useDispatch();
+
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -76,6 +80,17 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
     } catch (err: any) {
       const msg = getAuthErrorMessage(err.code);
       setFieldErrors(msg);
+    }
+    setLoading(false);
+  };
+
+  const handleLoginWithGoogle = async () => {
+    setLoading(true);
+    const result = await loginWithGoogle();
+    if (result.success) {
+      dispatch(login({ uid: result.user?.uid ?? '' }));
+    } else {
+      setFieldErrors({ global: result.error || 'Đăng nhập thất bại' });
     }
     setLoading(false);
   };
@@ -192,7 +207,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           <TouchableOpacity
             style={commonStyles.loginWithGoogle}
-            onPress={() => {}}
+            onPress={handleLoginWithGoogle}
           >
             <GoogleIcon width={32} height={32} />
           </TouchableOpacity>

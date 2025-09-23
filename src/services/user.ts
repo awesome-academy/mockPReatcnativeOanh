@@ -5,6 +5,7 @@ import {
   setDoc,
   doc,
   serverTimestamp,
+  getDoc,
 } from '@react-native-firebase/firestore';
 
 const firestore = getFirestore(getApp());
@@ -19,5 +20,20 @@ export const createUserProfile = async (uid: string, data: Partial<User>) => {
     });
   } catch (error) {
     throw error;
+  }
+};
+
+export const getCurrentUserProfile = async (uid: string) => {
+  try {
+    const userRef = doc(firestore, 'users', uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      return { success: true, data: userSnap.data() };
+    } else {
+      return { success: false, error: 'User profile not found' };
+    }
+  } catch (error: any) {
+    return { success: false, error: error.message };
   }
 };
