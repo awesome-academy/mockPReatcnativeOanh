@@ -1,0 +1,36 @@
+import { Tool } from '@/types/product';
+import axiosClient from './axiosClient';
+
+const API_ENDPOINT = '/tools';
+
+export const getListTools = async (): Promise<Tool[]> => {
+  try {
+    const response = await axiosClient.get<Tool[]>(API_ENDPOINT);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getListLimitedTools = async (
+  limit: number,
+  page: number = 1,
+): Promise<Tool[]> => {
+  try {
+    const response = await axiosClient.get<Tool[]>(
+      `${API_ENDPOINT}?_limit=${limit}&_page=${page}`,
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getToolById = async (id: string): Promise<Tool> => {
+  try {
+    const response = await axiosClient.get<Tool>(`${API_ENDPOINT}/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
