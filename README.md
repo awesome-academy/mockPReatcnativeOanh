@@ -95,3 +95,14 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+## Retrieving `google-services.json` from Firebase
+
+To set up Firebase for this project, follow these steps to download the `google-services.json` file:
+
+1. Go to the [Firebase Console](https://console.firebase.google.com/).
+2. Select your Firebase project.
+3. Project Settings > General > Your apps
+4. Select the Android app you have registered.
+5. Download google-services.json
+6. Place the downloaded `google-services.json` file in the `android/app/` directory of your project.

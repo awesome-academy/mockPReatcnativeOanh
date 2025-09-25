@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { login } from '@/stores/auth';
-import { signIn } from '@/services/auth';
+import { signIn, loginWithGoogle } from '@/services/auth';
 import {
   getAuthErrorMessage,
   validateAuthData,
@@ -54,10 +54,21 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
     try {
       const userCredential = await signIn(email, password);
-      dispatch(login({ email: userCredential.user.email ?? '' }));
+      dispatch(login({ uid: userCredential.user.uid ?? '' }));
     } catch (err: any) {
       const msg = getAuthErrorMessage(err.code);
       setFieldErrors(msg);
+    }
+    setLoading(false);
+  };
+
+  const handleLoginWithGoogle = async () => {
+    setLoading(true);
+    const result = await loginWithGoogle();
+    if (result.success) {
+      dispatch(login({ uid: result.user?.uid ?? '' }));
+    } else {
+      setFieldErrors({ global: result.error || 'Đăng nhập thất bại' });
     }
     setLoading(false);
   };
@@ -144,7 +155,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
           <TouchableOpacity
             style={commonStyles.loginWithGoogle}
-            onPress={() => {}}
+            onPress={handleLoginWithGoogle}
           >
             <GoogleIcon width={32} height={32} />
           </TouchableOpacity>

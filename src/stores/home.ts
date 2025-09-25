@@ -26,7 +26,7 @@ export const fetchHomeData = createAsyncThunk(
     try {
       const [plantsRes, plantPotsRes, toolsRes] = await Promise.all([
         getListLimitedPlants(4),
-        getListLimitedPlantPots(4, 2),
+        getListLimitedPlantPots(4),
         getListLimitedTools(4),
       ]);
       return {
