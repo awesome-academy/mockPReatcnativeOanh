@@ -6,6 +6,8 @@ import LoginScreen from '@/screens/auth/Login';
 import RegisterScreen from '@/screens/auth/Register';
 import HomeScreen from '@/screens/home/Home';
 import ProfileScreen from '@/screens/setting/Profile';
+import ListPlantPot from '@/screens/product/ListPlantPot';
+import ListTool from '@/screens/product/ListTool';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -15,6 +17,8 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   Home: undefined;
   Profile: undefined;
+  ListPlantPot: undefined;
+  ListTool: undefined;
 };
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
@@ -48,6 +52,16 @@ const AppStack = () => {
       <App.Screen
         name="Profile"
         component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="ListPlantPot"
+        component={ListPlantPot}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="ListTool"
+        component={ListTool}
         options={{ headerShown: false }}
       />
     </App.Navigator>

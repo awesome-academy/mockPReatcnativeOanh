@@ -71,6 +71,7 @@ export default function Home({ navigation }: HomeScreenProps) {
           title={item.title}
           seeAllText={item.seeAllText}
           products={item.products}
+          onPressSeeAll={item.onPressSeeAll}
         />
       );
     } else if (item.type === 'advertisement') {
@@ -111,12 +112,14 @@ export default function Home({ navigation }: HomeScreenProps) {
       title: 'Chậu cây trồng',
       seeAllText: 'Xem thêm Chậu cây trồng',
       products: plantPots,
+      onPressSeeAll: () => navigation.navigate('ListPlantPot'),
     },
     {
       type: 'productList',
       title: 'Dụng cụ trồng cây',
       seeAllText: 'Xem thêm Dụng cụ trồng cây',
       products: tools,
+      onPressSeeAll: () => navigation.navigate('ListTool'),
     },
     { type: 'advertisement' },
   ];
@@ -129,7 +132,7 @@ export default function Home({ navigation }: HomeScreenProps) {
         renderItem={renderItem}
         ListHeaderComponent={renderHeader}
       />
-      <AppNavbar navigation={navigation} activeTab="home" />
+      <AppNavbar activeTab="home" />
     </SafeAreaView>
   );
 }
