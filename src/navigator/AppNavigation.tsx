@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { RootState } from '@/stores/store';
 import LoginScreen from '@/screens/auth/Login';
 import RegisterScreen from '@/screens/auth/Register';
-import { HomeScreen } from '@/screens/home/HomeScreen';
+import HomeScreen from '@/screens/home/Home';
+import ProfileScreen from '@/screens/setting/Profile';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -13,7 +14,7 @@ export type AuthStackParamList = {
 
 export type AppStackParamList = {
   Home: undefined;
-  Setting: undefined;
+  Profile: undefined;
 };
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
@@ -44,11 +45,11 @@ const AppStack = () => {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      {/* <App.Screen
-        name="Setting"
-        component={SettingScreen}
+      <App.Screen
+        name="Profile"
+        component={ProfileScreen}
         options={{ headerShown: false }}
-      /> */}
+      />
     </App.Navigator>
   );
 };
