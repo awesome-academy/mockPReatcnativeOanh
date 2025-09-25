@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 import { store } from '@/stores/store';
 import AppNavigator from '@/navigator/AppNavigation';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { WEB_CLIENT_ID } from '@env';
 
 GoogleSignin.configure({
-  webClientId:
-    '856981985123-vbp2cfhj6csg11qje2kcjh1miufn16g3.apps.googleusercontent.com',
+  webClientId: WEB_CLIENT_ID,
   offlineAccess: true,
 });
 

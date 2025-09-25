@@ -34,6 +34,8 @@ local.properties
 *.keystore
 !debug.keystore
 .kotlin/
+# Ignore google-services.json in android/app
+android/app/google-services.json
 
 # node.js
 #
