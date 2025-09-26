@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authStore from './auth';
 import homeStore from './home';
+import questionStore from './question';
 
 export const store = configureStore({
   reducer: {
     auth: authStore,
     home: homeStore,
+    question: questionStore,
   },
 });
 
