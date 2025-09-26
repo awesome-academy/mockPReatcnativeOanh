@@ -7,6 +7,7 @@ export type Plant = {
   origin: string;
   remaining_quantity: number;
   type: number;
+  tag: string;
 };
 
 export type PlantPot = {

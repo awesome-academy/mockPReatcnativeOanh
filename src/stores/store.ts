@@ -3,6 +3,7 @@ import authStore from './auth';
 import homeStore from './home';
 import plantPotStore from './plantPot';
 import toolStore from './tool';
+import plantStore from './plant';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     home: homeStore,
     plantPot: plantPotStore,
     tool: toolStore,
+    plant: plantStore,
   },
 });
 

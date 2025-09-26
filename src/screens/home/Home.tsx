@@ -50,7 +50,7 @@ export default function Home({ navigation }: HomeScreenProps) {
         </Text>
         <TouchableOpacity
           style={commonStyles.defaultBtnRedirect}
-          onPress={() => {}}
+          onPress={() => navigation.navigate('ListPlant', { status: 1 })}
         >
           <Text style={styles.bannerSubText}>Xem hàng mới về</Text>
           <ArrowRightIcon width={24} height={24} />
@@ -106,6 +106,7 @@ export default function Home({ navigation }: HomeScreenProps) {
       title: 'Cây trồng',
       seeAllText: 'Xem thêm Cây trồng',
       products: plants,
+      onPressSeeAll: () => navigation.navigate('ListPlant', { status: 0 }),
     },
     {
       type: 'productList',
