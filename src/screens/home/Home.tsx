@@ -50,7 +50,7 @@ export default function Home({ navigation }: HomeScreenProps) {
         </Text>
         <TouchableOpacity
           style={commonStyles.defaultBtnRedirect}
-          onPress={() => {}}
+          onPress={() => navigation.navigate('ListPlant', { status: 1 })}
         >
           <Text style={styles.bannerSubText}>Xem hàng mới về</Text>
           <ArrowRightIcon width={24} height={24} />
@@ -71,6 +71,7 @@ export default function Home({ navigation }: HomeScreenProps) {
           title={item.title}
           seeAllText={item.seeAllText}
           products={item.products}
+          onPressSeeAll={item.onPressSeeAll}
         />
       );
     } else if (item.type === 'advertisement') {
@@ -105,18 +106,21 @@ export default function Home({ navigation }: HomeScreenProps) {
       title: 'Cây trồng',
       seeAllText: 'Xem thêm Cây trồng',
       products: plants,
+      onPressSeeAll: () => navigation.navigate('ListPlant', { status: 0 }),
     },
     {
       type: 'productList',
       title: 'Chậu cây trồng',
       seeAllText: 'Xem thêm Chậu cây trồng',
       products: plantPots,
+      onPressSeeAll: () => navigation.navigate('ListPlantPot'),
     },
     {
       type: 'productList',
       title: 'Dụng cụ trồng cây',
       seeAllText: 'Xem thêm Dụng cụ trồng cây',
       products: tools,
+      onPressSeeAll: () => navigation.navigate('ListTool'),
     },
     { type: 'advertisement' },
   ];
@@ -129,7 +133,7 @@ export default function Home({ navigation }: HomeScreenProps) {
         renderItem={renderItem}
         ListHeaderComponent={renderHeader}
       />
-      <AppNavbar navigation={navigation} activeTab="home" />
+      <AppNavbar activeTab="home" />
     </SafeAreaView>
   );
 }

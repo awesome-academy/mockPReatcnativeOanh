@@ -4,7 +4,6 @@ import { commonStyles } from '@/styles/common';
 import {
   Dimensions,
   FlatList,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,10 +11,10 @@ import {
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
-const itemWidth = (screenWidth - 24 * 3) / 2; // Two items per row with 24px gap
+const itemWidth = (screenWidth - 24 * 3) / 2;
 
 type PreviewListProductProps = {
-  title: string;
+  title?: string;
   products: {
     id: string;
     name: string;
@@ -23,14 +22,14 @@ type PreviewListProductProps = {
     price: number;
     type?: number;
   }[];
-  seeAllText: string;
+  seeAllText?: string;
   onPressSeeAll?: () => void;
 };
 
 export const PreviewListProduct = (props: PreviewListProductProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{props.title}</Text>
+      {props.title && <Text style={styles.title}>{props.title}</Text>}
 
       {props.products.length > 0 ? (
         <View>
@@ -39,19 +38,22 @@ export const PreviewListProduct = (props: PreviewListProductProps) => {
             keyExtractor={item => item.id}
             numColumns={2}
             renderItem={({ item }) => (
-              <ScrollView style={styles.itemContainer}>
+              <View style={[styles.itemContainer]}>
                 <ProductItem {...item} />
-              </ScrollView>
+              </View>
             )}
             columnWrapperStyle={styles.row}
+            showsVerticalScrollIndicator={true}
           />
-          <TouchableOpacity
-            onPress={() => {
-              if (props.onPressSeeAll) props.onPressSeeAll();
-            }}
-          >
-            <Text style={styles.seeAllText}>{props.seeAllText}</Text>
-          </TouchableOpacity>
+          {props.seeAllText && (
+            <TouchableOpacity
+              onPress={() => {
+                if (props.onPressSeeAll) props.onPressSeeAll();
+              }}
+            >
+              <Text style={styles.seeAllText}>{props.seeAllText}</Text>
+            </TouchableOpacity>
+          )}
         </View>
       ) : (
         <Text style={commonStyles.defaultDescription}>
@@ -76,6 +78,9 @@ const styles = StyleSheet.create({
   row: {
     justifyContent: 'space-between',
     marginBottom: 24,
+  },
+  mr_24: {
+    marginRight: 24,
   },
   itemContainer: {
     width: itemWidth,

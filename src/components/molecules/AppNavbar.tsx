@@ -5,18 +5,15 @@ import HomeIcon from '@/assets/svgs/home.svg';
 import SearchIcon from '@/assets/svgs/search.svg';
 import UserIcon from '@/assets/svgs/user.svg';
 import { BASE_COLORS } from '@/styles/color';
-import { AppStackParamList } from '@/navigator/AppNavigation';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useAppNavigation } from '@/hooks/useAppNavigation';
 
 type NavbarProps = {
-  navigation: NativeStackNavigationProp<
-    AppStackParamList,
-    keyof AppStackParamList
-  >;
   activeTab: string;
 };
 
-export const AppNavbar = ({ navigation, activeTab }: NavbarProps) => {
+export const AppNavbar = ({ activeTab }: NavbarProps) => {
+  const navigation = useAppNavigation();
+
   const TABS = [
     {
       key: 'home',
