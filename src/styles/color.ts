@@ -8,6 +8,9 @@ export const BASE_COLORS = {
   border: '#8B8B8B',
   gray_100: '#221F1F',
   gray_60: '#7D7B7B',
+  gray_50: '#7F7F7F',
+  gray_40: '#ABABAB',
   gray_20: '#F6F6F6',
   white: '#FFFFFF',
+  black: '#000000',
 };

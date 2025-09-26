@@ -9,6 +9,7 @@ import ProfileScreen from '@/screens/setting/Profile';
 import ListPlantPot from '@/screens/product/ListPlantPot';
 import ListTool from '@/screens/product/ListTool';
 import ListPlant from '@/screens/product/ListPlant';
+import QuestionAndAnswer from '@/screens/setting/Question';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -21,6 +22,7 @@ export type AppStackParamList = {
   ListPlantPot: undefined;
   ListTool: undefined;
   ListPlant: { status: number };
+  QuestionAndAnswer: undefined;
 };
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
@@ -69,6 +71,11 @@ const AppStack = () => {
       <App.Screen
         name="ListPlant"
         component={ListPlant}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="QuestionAndAnswer"
+        component={QuestionAndAnswer}
         options={{ headerShown: false }}
       />
     </App.Navigator>

@@ -9,3 +9,11 @@ export type User = {
 export type ValidationErrors<T> = {
   [K in keyof T]: string;
 };
+
+export type Profile = {
+  email?: string;
+  userName?: string;
+  phoneNumber?: string;
+  address?: string;
+  uid?: string;
+};
