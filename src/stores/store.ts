@@ -4,6 +4,7 @@ import homeStore from './home';
 import plantPotStore from './plantPot';
 import toolStore from './tool';
 import plantStore from './plant';
+import questionStore from './question';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     plantPot: plantPotStore,
     tool: toolStore,
     plant: plantStore,
+    question: questionStore,
   },
 });
 
