@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootState } from '@/stores/store';
+import { ProductType } from '@/constants/product';
 import LoginScreen from '@/screens/auth/Login';
 import RegisterScreen from '@/screens/auth/Register';
 import HomeScreen from '@/screens/home/Home';
@@ -10,6 +11,9 @@ import ListPlantPot from '@/screens/product/ListPlantPot';
 import ListTool from '@/screens/product/ListTool';
 import ListPlant from '@/screens/product/ListPlant';
 import QuestionAndAnswer from '@/screens/setting/Question';
+import TutorialList from '@/screens/setting/TutorialList';
+import TutorialDetail from '@/screens/setting/TutorialDetail';
+import ProductDetail from '@/screens/product/ProductDetail';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -22,7 +26,13 @@ export type AppStackParamList = {
   ListPlantPot: undefined;
   ListTool: undefined;
   ListPlant: { status: number };
+  ProductDetail: {
+    id: number;
+    type: ProductType;
+  };
   QuestionAndAnswer: undefined;
+  TutorialList: undefined;
+  TutorialDetail: { id: number };
 };
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
@@ -76,6 +86,21 @@ const AppStack = () => {
       <App.Screen
         name="QuestionAndAnswer"
         component={QuestionAndAnswer}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="TutorialList"
+        component={TutorialList}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="TutorialDetail"
+        component={TutorialDetail}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="ProductDetail"
+        component={ProductDetail}
         options={{ headerShown: false }}
       />
     </App.Navigator>

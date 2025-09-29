@@ -8,12 +8,14 @@ type ScreenHeaderProps = {
   title: string;
   onBackPress?: () => void;
   showShoppingCart?: boolean;
+  titleUppercase?: boolean;
 };
 
 export const ScreenHeader = ({
   title,
   onBackPress,
   showShoppingCart = true,
+  titleUppercase = true,
 }: ScreenHeaderProps) => {
   // const navigation = useAppNavigation();
 
@@ -26,7 +28,9 @@ export const ScreenHeader = ({
           </TouchableOpacity>
         )}
       </View>
-      <Text style={styles.headerTitle}>{title.toUpperCase()}</Text>
+      <Text style={styles.headerTitle}>
+        {titleUppercase ? title.toUpperCase() : title}
+      </Text>
       <View>
         {showShoppingCart && (
           <TouchableOpacity onPress={() => {}}>

@@ -27,9 +27,14 @@ export const getListLimitedPlants = async (
   }
 };
 
-export const getPlantById = async (id: string): Promise<Plant> => {
+export const getPlantById = async (
+  id: string | number,
+  options?: { signal?: AbortSignal },
+): Promise<Plant> => {
   try {
-    const response = await axiosClient.get<Plant>(`${API_ENDPOINT}/${id}`);
+    const response = await axiosClient.get<Plant>(`${API_ENDPOINT}/${id}`, {
+      signal: options?.signal,
+    });
     return response.data;
   } catch (error) {
     throw error;

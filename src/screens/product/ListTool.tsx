@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from '@/stores/store';
 import { commonStyles } from '@/styles/common';
 import { PreviewListProduct } from '@/components/organisms/home/PreviewListProduct';
 import { fetchToolData } from '@/stores/tool';
-import { SCREEN_LIST_TITLE } from '@/constants/product';
+import { PRODUCT_TYPE, SCREEN_LIST_TITLE } from '@/constants/product';
 
 type ListToolScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -35,7 +35,9 @@ export default function ListTool({ navigation }: ListToolScreenProps) {
         title={SCREEN_LIST_TITLE.TOOL}
         onBackPress={() => navigation.navigate('Home')}
       />
-      {!error && <PreviewListProduct products={tools} />}
+      {!error && (
+        <PreviewListProduct products={tools} productType={PRODUCT_TYPE.TOOL} />
+      )}
       {error && <Text style={commonStyles.center}>Error: {error}</Text>}
     </SafeAreaView>
   );

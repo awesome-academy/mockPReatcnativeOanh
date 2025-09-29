@@ -1,4 +1,6 @@
 import { ProductItem } from '@/components/molecules/home/ProductItem';
+import { ProductType } from '@/constants/product';
+import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { BASE_COLORS } from '@/styles/color';
 import { commonStyles } from '@/styles/common';
 import {
@@ -22,11 +24,19 @@ type PreviewListProductProps = {
     price: number;
     type?: number;
   }[];
+
   seeAllText?: string;
   onPressSeeAll?: () => void;
+  productType: ProductType;
 };
 
 export const PreviewListProduct = (props: PreviewListProductProps) => {
+  const navigation = useAppNavigation();
+
+  const goToDetailScreen = (id: string) => {
+    navigation.navigate('ProductDetail', { id, type: props.productType });
+  };
+
   return (
     <View style={styles.container}>
       {props.title && <Text style={styles.title}>{props.title}</Text>}
@@ -39,7 +49,10 @@ export const PreviewListProduct = (props: PreviewListProductProps) => {
             numColumns={2}
             renderItem={({ item }) => (
               <View style={[styles.itemContainer]}>
-                <ProductItem {...item} />
+                <ProductItem
+                  {...item}
+                  onPress={() => goToDetailScreen(item.id)}
+                />
               </View>
             )}
             columnWrapperStyle={styles.row}

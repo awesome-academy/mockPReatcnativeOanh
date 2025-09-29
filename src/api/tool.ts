@@ -26,9 +26,14 @@ export const getListLimitedTools = async (
   }
 };
 
-export const getToolById = async (id: string): Promise<Tool> => {
+export const getToolById = async (
+  id: string | number,
+  options?: { signal?: AbortSignal },
+): Promise<Tool> => {
   try {
-    const response = await axiosClient.get<Tool>(`${API_ENDPOINT}/${id}`);
+    const response = await axiosClient.get<Tool>(`${API_ENDPOINT}/${id}`, {
+      signal: options?.signal,
+    });
     return response.data;
   } catch (error) {
     throw error;

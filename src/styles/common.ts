@@ -70,4 +70,10 @@ export const commonStyles = StyleSheet.create({
     marginTop: 100,
     textAlign: 'center',
   },
+  retry: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+    textAlign: 'center',
+    marginTop: 16,
+  }
 });
