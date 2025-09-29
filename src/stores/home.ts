@@ -37,16 +37,16 @@ export const fetchHomeData = createAsyncThunk(
     } catch (err) {
       return rejectWithValue('Failed to fetch data');
     }
-  }
+  },
 );
 
 const homeStore = createSlice({
   name: 'home',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchHomeData.pending, (state) => {
+      .addCase(fetchHomeData.pending, state => {
         state.loading = true;
         state.error = null;
       })

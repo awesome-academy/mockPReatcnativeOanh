@@ -8,7 +8,8 @@
       "price": 250000,
       "origin": "Châu Á",
       "remaining_quantity": 124,
-      "type": 0
+      "type": 0,
+      "tag": "new"
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "price": 250000,
       "origin": "Châu Á",
       "remaining_quantity": 10,
-      "type": 1
+      "type": 1,
+      "tag": "new"
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "price": 250000,
       "origin": "Châu Á",
       "remaining_quantity": 10,
-      "type": 0
+      "type": 0,
+      "tag": ""
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
       "price": 250000,
       "origin": "Châu Á",
       "remaining_quantity": 10,
-      "type": 0
+      "type": 0,
+      "tag": "new"
     },
     {
       "id": 5,
@@ -48,7 +52,8 @@
       "price": 250000,
       "origin": "Châu Á",
       "remaining_quantity": 10,
-      "type": 1
+      "type": 1,
+      "tag": "sale"
     },
     {
       "id": 6,
@@ -58,7 +63,8 @@
       "price": 250000,
       "origin": "Châu Á",
       "remaining_quantity": 10,
-      "type": 1
+      "type": 1,
+      "tag": "popular"
     }
   ],
   "plant_pots": [
