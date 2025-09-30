@@ -75,5 +75,11 @@ export const commonStyles = StyleSheet.create({
     textDecorationLine: 'underline',
     textAlign: 'center',
     marginTop: 16,
-  }
+  },
+  success: {
+    color: BASE_COLORS.primary,
+  },
+  fail: {
+    color: BASE_COLORS.error,
+  },
 });
