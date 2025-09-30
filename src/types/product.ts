@@ -16,6 +16,8 @@ export type PlantPot = {
   image: string;
   price: number;
   remaining_quantity: number;
+  size?: string;
+  origin?: string;
 };
 
 export type Tool = {
@@ -24,4 +26,6 @@ export type Tool = {
   image: string;
   price: number;
   remaining_quantity: number;
+  size?: string;
+  origin?: string;
 };

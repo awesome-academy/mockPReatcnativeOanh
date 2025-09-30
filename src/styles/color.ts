@@ -7,6 +7,8 @@ export const BASE_COLORS = {
   error: '#CE0000',
   border: '#8B8B8B',
   gray_100: '#221F1F',
+  gray_80: '#333333',
+  gray_70: '#3A3A3A',
   gray_60: '#7D7B7B',
   gray_50: '#7F7F7F',
   gray_40: '#ABABAB',

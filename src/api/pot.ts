@@ -26,9 +26,14 @@ export const getListLimitedPlantPots = async (
   }
 };
 
-export const getPlantPotById = async (id: string): Promise<PlantPot> => {
+export const getPlantPotById = async (
+  id: string | number,
+  options?: { signal?: AbortSignal },
+): Promise<PlantPot> => {
   try {
-    const response = await axiosClient.get<PlantPot>(`${API_ENDPOINT}/${id}`);
+    const response = await axiosClient.get<PlantPot>(`${API_ENDPOINT}/${id}`, {
+      signal: options?.signal,
+    });
     return response.data;
   } catch (error) {
     throw error;

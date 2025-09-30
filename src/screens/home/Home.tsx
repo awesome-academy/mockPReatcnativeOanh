@@ -20,6 +20,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/stores/store';
 import { fetchHomeData } from '@/stores/home';
+import { PRODUCT_TYPE } from '@/constants/product';
 
 type HomeScreenProps = NativeStackScreenProps<AppStackParamList, 'Home'>;
 
@@ -72,6 +73,7 @@ export default function Home({ navigation }: HomeScreenProps) {
           seeAllText={item.seeAllText}
           products={item.products}
           onPressSeeAll={item.onPressSeeAll}
+          productType={item.productType}
         />
       );
     } else if (item.type === 'advertisement') {
@@ -107,6 +109,7 @@ export default function Home({ navigation }: HomeScreenProps) {
       seeAllText: 'Xem thêm Cây trồng',
       products: plants,
       onPressSeeAll: () => navigation.navigate('ListPlant', { status: 0 }),
+      productType: PRODUCT_TYPE.PLANT,
     },
     {
       type: 'productList',
@@ -114,6 +117,7 @@ export default function Home({ navigation }: HomeScreenProps) {
       seeAllText: 'Xem thêm Chậu cây trồng',
       products: plantPots,
       onPressSeeAll: () => navigation.navigate('ListPlantPot'),
+      productType: PRODUCT_TYPE.PLANT_POT,
     },
     {
       type: 'productList',
@@ -121,6 +125,7 @@ export default function Home({ navigation }: HomeScreenProps) {
       seeAllText: 'Xem thêm Dụng cụ trồng cây',
       products: tools,
       onPressSeeAll: () => navigation.navigate('ListTool'),
+      productType: PRODUCT_TYPE.TOOL,
     },
     { type: 'advertisement' },
   ];

@@ -34,7 +34,7 @@ export default function UserProfile({ navigation }: ProfileScreenProps) {
         },
         {
           label: SCREEN_LIST_TITLE.TUTORIAL,
-          onPress: () => {},
+          onPress: () => navigation.navigate('TutorialList'),
         },
         {
           label: SCREEN_LIST_TITLE.HISTORY,

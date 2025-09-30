@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from '@/stores/store';
 import { fetchPlantPotData } from '@/stores/plantPot';
 import { commonStyles } from '@/styles/common';
 import { PreviewListProduct } from '@/components/organisms/home/PreviewListProduct';
-import { SCREEN_LIST_TITLE } from '@/constants/product';
+import { PRODUCT_TYPE, SCREEN_LIST_TITLE } from '@/constants/product';
 
 type ListPotScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -35,7 +35,12 @@ export default function ListPlantPot({ navigation }: ListPotScreenProps) {
         title={SCREEN_LIST_TITLE.PLANT_POT}
         onBackPress={() => navigation.navigate('Home')}
       />
-      {!error && <PreviewListProduct products={plantPots} />}
+      {!error && (
+        <PreviewListProduct
+          products={plantPots}
+          productType={PRODUCT_TYPE.PLANT_POT}
+        />
+      )}
       {error && <Text style={commonStyles.center}>Error: {error}</Text>}
     </SafeAreaView>
   );

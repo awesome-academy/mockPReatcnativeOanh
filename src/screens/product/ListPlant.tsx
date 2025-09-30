@@ -15,7 +15,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/stores/store';
 import { commonStyles } from '@/styles/common';
 import { PreviewListProduct } from '@/components/organisms/home/PreviewListProduct';
-import { PLANT_TYPE, SCREEN_LIST_TITLE } from '@/constants/product';
+import {
+  PLANT_TYPE,
+  PRODUCT_TYPE,
+  SCREEN_LIST_TITLE,
+} from '@/constants/product';
 import { fetchPlantData } from '@/stores/plant';
 import { BASE_COLORS } from '@/styles/color';
 
@@ -75,7 +79,12 @@ export default function ListPlant({ navigation, route }: ListScreenProps) {
           ))}
         </ScrollView>
       </View>
-      {!error && <PreviewListProduct products={plants} />}
+      {!error && (
+        <PreviewListProduct
+          products={plants}
+          productType={PRODUCT_TYPE.PLANT}
+        />
+      )}
       {error && <Text style={commonStyles.center}>Error: {error}</Text>}
     </SafeAreaView>
   );

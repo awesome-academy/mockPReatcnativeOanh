@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AppNavbar } from '@/components/molecules/AppNavbar';
 import { ScreenHeader } from '@/components/molecules/ScreenHeader';
 import { SCREEN_LIST_TITLE } from '@/constants/product';
@@ -9,87 +9,81 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   ActivityIndicator,
   FlatList,
-  LayoutAnimation,
-  Platform,
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
-  UIManager,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { BASE_COLORS } from '@/styles/color';
-import ChevronUp from '@/assets/svgs/chevron-up.svg';
-import ChevronDown from '@/assets/svgs/chevron-down.svg';
-import { Question } from '@/types/setting';
-import { fetchQuestionData } from '@/stores/question';
+import { fetchTutorialData } from '@/stores/tutorial';
+import { Tutorial } from '@/types/setting';
 
-type QuestionScreenProps = NativeStackScreenProps<
+type TutorialScreenProps = NativeStackScreenProps<
   AppStackParamList,
-  'QuestionAndAnswer'
+  'TutorialList'
 >;
 
-if (Platform.OS === 'android') {
-  UIManager.setLayoutAnimationEnabledExperimental &&
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
-const QAItem: React.FC<Question> = ({ question, answer }) => {
-  const [expanded, setExpanded] = useState(false);
-
-  const toggleExpand = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setExpanded(!expanded);
-  };
-
-  return (
-    <View style={styles.item}>
-      <TouchableOpacity onPress={toggleExpand} style={styles.header}>
-        <Text style={styles.question}>{question}</Text>
-        {expanded ? (
-          <ChevronUp height={24} width={24} />
-        ) : (
-          <ChevronDown height={24} width={24} />
-        )}
-      </TouchableOpacity>
-      {expanded && <Text style={styles.answer}>{answer}</Text>}
-    </View>
-  );
-};
-
-export default function QuestionAndAnswer({ navigation }: QuestionScreenProps) {
+export default function TutorialList({ navigation }: TutorialScreenProps) {
   const dispatch = useDispatch<AppDispatch>();
-  const { questions, loading, error } = useSelector(
-    (state: RootState) => state.question,
+  const { tutorials, loading, error } = useSelector(
+    (state: RootState) => state.tutorial,
   );
 
   useEffect(() => {
-    dispatch(fetchQuestionData());
+    dispatch(fetchTutorialData());
   }, [dispatch]);
 
   if (loading)
     return <ActivityIndicator size="large" style={commonStyles.center} />;
 
+  const renderItem = ({
+    id,
+    plant: { name: plant_name, image: plant_image },
+    difficulty,
+  }: Tutorial) => (
+    <TouchableOpacity
+      key={id}
+      onPress={() => navigation.navigate('TutorialDetail', { id })}
+    >
+      <View style={styles.item}>
+        <Image
+          source={
+            plant_image
+              ? { uri: plant_image }
+              : require('@/assets/images/image_failed.png')
+          }
+          style={styles.image}
+        />
+        <View style={styles.info}>
+          <Text style={styles.plantName}>{plant_name}</Text>
+          <Text style={styles.plantDifficulty}>Độ khó {difficulty}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+
   return (
     <SafeAreaView style={commonStyles.container}>
       <ScreenHeader
-        title={SCREEN_LIST_TITLE.QUESTION}
+        title={SCREEN_LIST_TITLE.TUTORIAL}
         onBackPress={() => navigation.navigate('Profile')}
         showShoppingCart={false}
       />
       <View style={styles.body}>
         {!error &&
-          (questions.length ? (
+          (tutorials.length ? (
             <FlatList
-              data={questions}
+              data={tutorials}
               keyExtractor={item => item.id.toString()}
               numColumns={1}
-              renderItem={({ item }) => <QAItem key={item.id} {...item} />}
+              renderItem={({ item }) => renderItem(item)}
             />
           ) : (
             <Text style={commonStyles.center}>
-              Hiện tại không có câu hỏi nào.
+              Hiện tại không có sẵn hướng dẫn trồng cây.
             </Text>
           ))}
         {error && <Text style={commonStyles.center}>Error: {error}</Text>}
@@ -102,28 +96,39 @@ export default function QuestionAndAnswer({ navigation }: QuestionScreenProps) {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    paddingHorizontal: 40,
     backgroundColor: BASE_COLORS.white,
-  },
-  item: {
-    marginBottom: 8,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  question: {
+  item: {
+    paddingVertical: 15,
+    paddingHorizontal: 48,
+    flexDirection: 'row',
+    gap: 16,
+  },
+  image: {
+    width: 77,
+    height: 70,
+    resizeMode: 'cover',
+    borderRadius: 8,
+  },
+  info: {
+    gap: 5,
+    justifyContent: 'center',
+  },
+  plantName: {
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '500',
-    paddingVertical: 8,
-    flex: 1,
+    color: BASE_COLORS.black,
   },
-  answer: {
-    fontSize: 16,
+  plantDifficulty: {
+    fontSize: 14,
     lineHeight: 20,
+    fontWeight: '400',
     color: BASE_COLORS.gray_60,
-    paddingVertical: 8,
   },
 });

@@ -1,6 +1,6 @@
 import { PLANT_TYPE } from '@/constants/product';
 import { BASE_COLORS } from '@/styles/color';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 type ProductItemProps = {
   id: string;
@@ -8,11 +8,12 @@ type ProductItemProps = {
   image: string;
   price: number;
   type?: number;
+  onPress?: () => void;
 };
 
 export const ProductItem = (props: ProductItemProps) => {
   return (
-    <View>
+    <TouchableOpacity onPress={props.onPress}>
       <Image
         source={
           props.image
@@ -33,7 +34,7 @@ export const ProductItem = (props: ProductItemProps) => {
           ? `${props.price.toLocaleString('vi-VN')}đ`
           : 'Chưa có thông tin về giá'}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
