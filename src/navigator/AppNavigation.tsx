@@ -7,6 +7,7 @@ import LoginScreen from '@/screens/auth/Login';
 import RegisterScreen from '@/screens/auth/Register';
 import HomeScreen from '@/screens/home/Home';
 import ProfileScreen from '@/screens/setting/Profile';
+import EditProfile from '@/screens/setting/EditProfile';
 import ListPlantPot from '@/screens/product/ListPlantPot';
 import ListTool from '@/screens/product/ListTool';
 import ListPlant from '@/screens/product/ListPlant';
@@ -25,6 +26,7 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   Home: undefined;
   Profile: undefined;
+  EditProfile: undefined;
   ListPlantPot: undefined;
   ListTool: undefined;
   ListPlant: { status: number };
@@ -70,6 +72,11 @@ const AppStack = () => {
       <App.Screen
         name="Profile"
         component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="EditProfile"
+        component={EditProfile}
         options={{ headerShown: false }}
       />
       <App.Screen

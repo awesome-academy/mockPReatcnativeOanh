@@ -20,7 +20,7 @@ import { AuthStackParamList } from '@/navigator/AppNavigation';
 import { AppInput } from '@/components/atoms/AppInput';
 import { commonStyles } from '@/styles/common';
 import { BASE_COLORS } from '@/styles/color';
-import { createUserProfile } from '@/services/user';
+import { createUserProfile, getCurrentUserProfile } from '@/services/user';
 import AppButton from '@/components/atoms/AppButton';
 import GoogleIcon from '@/assets/svgs/google.svg';
 import EyeFilledIcon from '@/assets/svgs/eye-filled.svg';
@@ -87,12 +87,27 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
   const handleLoginWithGoogle = async () => {
     setLoading(true);
     const result = await loginWithGoogle();
-    if (result.success) {
-      dispatch(login({ uid: result.user?.uid ?? '' }));
+    if (result.success && result.user) {
+      setupUserSession(result.user.uid);
     } else {
       setFieldErrors({ global: result.error || 'Đăng nhập thất bại' });
     }
     setLoading(false);
+  };
+
+  const setupUserSession = async (uid: string) => {
+    const userProfile = await getCurrentUserProfile(uid);
+    dispatch(
+      login({
+        user: {
+          email: userProfile.data?.email ?? '',
+          userName: userProfile.data?.userName ?? '',
+          phoneNumber: userProfile.data?.phoneNumber ?? '',
+          address: userProfile.data?.address ?? '',
+          uid,
+        },
+      }),
+    );
   };
 
   return (

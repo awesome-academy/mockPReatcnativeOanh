@@ -30,7 +30,7 @@ export default function UserProfile({ navigation }: ProfileScreenProps) {
       items: [
         {
           label: SCREEN_LIST_TITLE.EDIT_PROFILE,
-          onPress: () => {},
+          onPress: () => navigation.navigate('EditProfile'),
         },
         {
           label: SCREEN_LIST_TITLE.TUTORIAL,

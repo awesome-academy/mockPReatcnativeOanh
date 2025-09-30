@@ -1,5 +1,5 @@
 import { AUTH_MESSAGES } from "@/constants/messages";
-import { User, ValidationErrors } from "@/types/auth";
+import { Profile, User, ValidationErrors } from "@/types/auth";
 
 export type AuthError = {
   email?: string;
@@ -49,6 +49,13 @@ export const validateUserName = (userName: string, type: "login" | "register"): 
   return "";
 };
 
+export const validateAddress = (address: string): string => {
+  if (!address) {
+    return AUTH_MESSAGES.ADDRESS_REQUIRED;
+  }
+  return "";
+};
+
 export const validatePhoneNumber = (phoneNumber: string, type: "login" | "register"): string => {
   if (type === "register") {
     if (!phoneNumber) {
@@ -90,6 +97,22 @@ export const validateAuthData = (
     data.password || "",
     type
   );
+
+  return {
+    valid: Object.values(errors).every((msg) => msg === ""),
+    errors,
+  };
+};
+
+export const validateEditProfile = (
+  data: Profile,
+): { valid: boolean; errors: ValidationErrors<Profile> } => {
+  const errors: ValidationErrors<Profile> = {} as ValidationErrors<Profile>;
+
+  errors.email = validateEmail(data.email || "");
+  errors.phoneNumber = validatePhoneNumber(data.phoneNumber || "", 'register');
+  errors.address = validateAddress(data.address || "");
+  errors.userName = validateUserName(data.userName || "", 'register');
 
   return {
     valid: Object.values(errors).every((msg) => msg === ""),
