@@ -20,7 +20,11 @@ export const AppNavbar = ({ activeTab }: NavbarProps) => {
       icon: <HomeIcon width={24} height={24} />,
       action: () => navigation.navigate('Home'),
     },
-    { key: 'search', icon: <SearchIcon width={24} height={24} /> },
+    {
+      key: 'search',
+      icon: <SearchIcon width={24} height={24} />,
+      action: () => navigation.navigate('Search'),
+    },
     { key: 'noti', icon: <BellIcon width={24} height={24} /> },
     {
       key: 'user',

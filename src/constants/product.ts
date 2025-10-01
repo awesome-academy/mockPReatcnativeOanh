@@ -1,3 +1,5 @@
+import { Plant, PlantPot, Tool } from '@/types/product';
+
 export const PLANT_TYPE = {
   0: 'Ưa bóng',
   1: 'Ưa sáng',
@@ -14,6 +16,7 @@ export const SCREEN_LIST_TITLE = {
   HISTORY: 'Lịch sử giao dịch',
   TERM: 'Điều khoản và điều kiện',
   POLICY: 'Chính sách quyền riêng tư',
+  SEARCH: 'Tìm kiếm',
 };
 
 export const PRODUCT_TYPE = {
@@ -23,6 +26,11 @@ export const PRODUCT_TYPE = {
 };
 
 export type ProductType = (typeof PRODUCT_TYPE)[keyof typeof PRODUCT_TYPE];
+
+export type SearchItem =
+  | (Plant & { product_type: typeof PRODUCT_TYPE.PLANT })
+  | (PlantPot & { product_type: typeof PRODUCT_TYPE.PLANT_POT })
+  | (Tool & { product_type: typeof PRODUCT_TYPE.TOOL });
 
 export const PRODUCT_TYPE_TITLE = {
   plant: 'Cây trồng',

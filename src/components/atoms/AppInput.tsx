@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
   },
   inputWithIcon: {
     paddingRight: 50,
+    overflow: 'hidden',
   },
   inputFocused: {
     borderColor: BASE_COLORS.primary,

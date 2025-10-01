@@ -6,6 +6,7 @@ import { ProductType } from '@/constants/product';
 import LoginScreen from '@/screens/auth/Login';
 import RegisterScreen from '@/screens/auth/Register';
 import HomeScreen from '@/screens/home/Home';
+import SearchScreen from '@/screens/search/Search';
 import ProfileScreen from '@/screens/setting/Profile';
 import ListPlantPot from '@/screens/product/ListPlantPot';
 import ListTool from '@/screens/product/ListTool';
@@ -24,6 +25,7 @@ export type AuthStackParamList = {
 
 export type AppStackParamList = {
   Home: undefined;
+  Search: undefined;
   Profile: undefined;
   ListPlantPot: undefined;
   ListTool: undefined;
@@ -65,6 +67,11 @@ const AppStack = () => {
       <App.Screen
         name="Home"
         component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="Search"
+        component={SearchScreen}
         options={{ headerShown: false }}
       />
       <App.Screen

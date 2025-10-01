@@ -7,6 +7,7 @@ import plantStore from './plant';
 import questionStore from './question';
 import tutorialStore from './tutorial';
 import orderHistoryStore from './orderHistory';
+import searchStore from './search';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     question: questionStore,
     tutorial: tutorialStore,
     orderHistory: orderHistoryStore,
+    search: searchStore,
   },
 });
 
