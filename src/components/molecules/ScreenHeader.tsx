@@ -21,7 +21,7 @@ export const ScreenHeader = ({
 
   return (
     <View style={styles.headerContainer}>
-      <View>
+      <View style={styles.iconContainer}>
         {onBackPress && (
           <TouchableOpacity onPress={onBackPress}>
             <BackIcon width={24} height={24} />
@@ -31,7 +31,7 @@ export const ScreenHeader = ({
       <Text style={styles.headerTitle}>
         {titleUppercase ? title.toUpperCase() : title}
       </Text>
-      <View>
+      <View style={styles.iconContainer}>
         {showShoppingCart && (
           <TouchableOpacity onPress={() => {}}>
             <ShoppingCartIcon width={24} height={24} />
@@ -56,5 +56,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '500',
     color: BASE_COLORS.gray_100,
+  },
+  iconContainer: {
+    width: 24,
+    height: 24,
   },
 });

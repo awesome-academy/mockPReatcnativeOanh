@@ -156,7 +156,64 @@
     }
   ],
   "cart": [],
-  "orders": [],
+  "orders": [
+    {
+      "id": 0,
+      "user": {
+        "userName": "name",
+        "email": "abc@gmail.com",
+        "phoneNumber": "0123456789",
+        "address": "123 ABC, Phường 1, Quận 1, TP.HCM"
+      },
+      "products": [
+        {
+          "id": 2,
+          "name": "Song of India",
+          "image": "https://www.thespruce.com/thmb/y4xXM1e6u4vortXwchyaqIW6tlM=/3000x0/filters:no_upscale():max_bytes(150000):strip_icc()/growing-the-song-of-india-5087083-2-44b3e4ff78604d6cb47a460b04b27923.jpg",
+          "product_type": "plant",
+          "price": 250000,
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "name": "Planta Rosewood",
+          "image": "https://rosaplanters.com/wp-content/uploads/2022/05/DSC07787-FILEminimizer-scaled.jpg",
+          "product_type": "plant_pot",
+          "price": 120000,
+          "quantity": 1
+        }
+      ],
+      "payment_amount": 620000,
+      "transport_method": 0,
+      "payment_method": 0,
+      "status": 0,
+      "order_date": "03/09/2025"
+    },
+    {
+      "id": 1,
+      "user": {
+        "userName": "name",
+        "email": "abc@gmail.com",
+        "phoneNumber": "0123456789",
+        "address": "123 ABC, Phường 1, Quận 1, TP.HCM"
+      },
+      "products": [
+        {
+          "id": 3,
+          "name": "Planta Rosewood",
+          "image": "https://rosaplanters.com/wp-content/uploads/2022/05/DSC07787-FILEminimizer-scaled.jpg",
+          "product_type": "plant_pot",
+          "price": 120000,
+          "quantity": 1
+        }
+      ],
+      "payment_amount": 120000,
+      "transport_method": 1,
+      "payment_method": null,
+      "status": 1,
+      "order_date": "21/09/2025"
+    }
+  ],
   "questions": [
     {
       "id": 0,

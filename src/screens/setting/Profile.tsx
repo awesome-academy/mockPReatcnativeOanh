@@ -38,7 +38,7 @@ export default function UserProfile({ navigation }: ProfileScreenProps) {
         },
         {
           label: SCREEN_LIST_TITLE.HISTORY,
-          onPress: () => {},
+          onPress: () => navigation.navigate('OrderHistory'),
         },
         {
           label: SCREEN_LIST_TITLE.QUESTION,

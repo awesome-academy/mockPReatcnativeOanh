@@ -14,6 +14,8 @@ import QuestionAndAnswer from '@/screens/setting/Question';
 import TutorialList from '@/screens/setting/TutorialList';
 import TutorialDetail from '@/screens/setting/TutorialDetail';
 import ProductDetail from '@/screens/product/ProductDetail';
+import OrderHistoryList from '@/screens/setting/OrderHistory';
+import OrderDetail from '@/screens/setting/OrderDetail';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -33,6 +35,8 @@ export type AppStackParamList = {
   QuestionAndAnswer: undefined;
   TutorialList: undefined;
   TutorialDetail: { id: number };
+  OrderHistory: undefined;
+  OrderDetail: { id: number };
 };
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
@@ -101,6 +105,16 @@ const AppStack = () => {
       <App.Screen
         name="ProductDetail"
         component={ProductDetail}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="OrderHistory"
+        component={OrderHistoryList}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="OrderDetail"
+        component={OrderDetail}
         options={{ headerShown: false }}
       />
     </App.Navigator>
