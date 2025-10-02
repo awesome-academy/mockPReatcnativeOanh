@@ -14,4 +14,5 @@ export const AUTH_MESSAGES = {
   NETWORK_REQUEST_FAILED:
     'Lỗi mạng. Vui lòng kiểm tra kết nối Internet của bạn.',
   INVALID_CREDENTIALS: 'Email hoặc mật khẩu không chính xác.',
+  ADDRESS_REQUIRED: 'Vui lòng nhập địa chỉ',
 };

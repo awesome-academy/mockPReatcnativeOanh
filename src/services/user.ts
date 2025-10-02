@@ -1,4 +1,4 @@
-import { User } from '@/types/auth';
+import { Profile, User } from '@/types/auth';
 import { getApp } from '@react-native-firebase/app';
 import {
   getFirestore,
@@ -36,4 +36,8 @@ export const getCurrentUserProfile = async (uid: string) => {
   } catch (error: any) {
     return { success: false, error: error.message };
   }
+};
+
+export const updateUserProfile = (uid: string, data: Partial<Profile>) => {
+  return setDoc(doc(firestore, 'users', uid), data, { merge: true });
 };
