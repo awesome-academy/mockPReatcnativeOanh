@@ -18,6 +18,7 @@ import TutorialDetail from '@/screens/setting/TutorialDetail';
 import ProductDetail from '@/screens/product/ProductDetail';
 import OrderHistoryList from '@/screens/setting/OrderHistory';
 import OrderDetail from '@/screens/setting/OrderDetail';
+import ShoppingCartScreen from '@/screens/shoppingCart/ShoppingCart';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -41,6 +42,7 @@ export type AppStackParamList = {
   TutorialDetail: { id: number };
   OrderHistory: undefined;
   OrderDetail: { id: number };
+  ShoppingCart: undefined;
 };
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
@@ -129,6 +131,11 @@ const AppStack = () => {
       <App.Screen
         name="OrderDetail"
         component={OrderDetail}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="ShoppingCart"
+        component={ShoppingCartScreen}
         options={{ headerShown: false }}
       />
     </App.Navigator>

@@ -17,6 +17,9 @@ export const SCREEN_LIST_TITLE = {
   TERM: 'Điều khoản và điều kiện',
   POLICY: 'Chính sách quyền riêng tư',
   SEARCH: 'Tìm kiếm',
+  SHOPPING_CART: 'Giỏ hàng',
+  CHECKOUT: 'Thanh toán',
+  ORDER_SUCCESS: 'Đặt hàng thành công',
 };
 
 export const PRODUCT_TYPE = {

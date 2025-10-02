@@ -5,6 +5,8 @@ import { store } from '@/stores/store';
 import AppNavigator from '@/navigator/AppNavigation';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { WEB_CLIENT_ID } from '@env';
+import Toast from 'react-native-toast-message';
+import { ConfirmProvider } from '@/hooks/useConfirmDialog';
 
 GoogleSignin.configure({
   webClientId: WEB_CLIENT_ID,
@@ -18,7 +20,10 @@ function App() {
     <SafeAreaProvider>
       <Provider store={store}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <AppNavigator />
+        <ConfirmProvider>
+          <AppNavigator />
+          <Toast />
+        </ConfirmProvider>
       </Provider>
     </SafeAreaProvider>
   );
