@@ -3,9 +3,10 @@ import axiosClient from './axiosClient';
 
 const API_ENDPOINT = '/plant_pots';
 
-export const getListPlantPots = async (): Promise<PlantPot[]> => {
+export const getListPlantPots = async (filters = {}): Promise<PlantPot[]> => {
+  const query = new URLSearchParams(filters).toString();
   try {
-    const response = await axiosClient.get<PlantPot[]>(API_ENDPOINT);
+    const response = await axiosClient.get<PlantPot[]>(`${API_ENDPOINT}?${query}`);
     return response.data;
   } catch (error) {
     throw error;

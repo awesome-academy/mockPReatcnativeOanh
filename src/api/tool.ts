@@ -3,9 +3,10 @@ import axiosClient from './axiosClient';
 
 const API_ENDPOINT = '/tools';
 
-export const getListTools = async (): Promise<Tool[]> => {
+export const getListTools = async (filters = {}): Promise<Tool[]> => {
+  const query = new URLSearchParams(filters).toString();
   try {
-    const response = await axiosClient.get<Tool[]>(API_ENDPOINT);
+    const response = await axiosClient.get<Tool[]>(`${API_ENDPOINT}?${query}`);
     return response.data;
   } catch (error) {
     throw error;
