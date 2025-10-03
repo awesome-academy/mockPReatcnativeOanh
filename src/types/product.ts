@@ -1,3 +1,5 @@
+import { ProductType } from "@/constants/product";
+
 export type Plant = {
   id: string;
   name: string;
@@ -28,4 +30,15 @@ export type Tool = {
   remaining_quantity: number;
   size?: string;
   origin?: string;
+};
+
+export type Product = {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  remaining_quantity: number;
+  product_type: ProductType;
+  quantity: number;
+  selected: boolean;
 };

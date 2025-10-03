@@ -42,9 +42,12 @@ export default function Home({ navigation }: HomeScreenProps) {
 
   const renderHeader = () => (
     <View style={styles.banner}>
-      <View style={styles.shoppingCart}>
+      <TouchableOpacity
+        style={styles.shoppingCart}
+        onPress={() => navigation.navigate('ShoppingCart')}
+      >
         <ShoppingCartIcon width={24} height={24} />
-      </View>
+      </TouchableOpacity>
       <View style={styles.bannerTextContainer}>
         <Text style={styles.bannerText}>
           Planta - tỏa sáng không gian nhà bạn

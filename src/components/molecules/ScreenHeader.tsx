@@ -1,14 +1,17 @@
+import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ShoppingCartIcon from '@/assets/svgs/shopping-cart.svg';
 import BackIcon from '@/assets/svgs/chevron-left.svg';
 import { BASE_COLORS } from '@/styles/color';
-// import { useAppNavigation } from '@/hooks/useAppNavigation';
+import { useAppNavigation } from '@/hooks/useAppNavigation';
 
 type ScreenHeaderProps = {
   title: string;
   onBackPress?: () => void;
   showShoppingCart?: boolean;
   titleUppercase?: boolean;
+  rightIcon?: React.ReactNode;
+  onRightIconPress?: () => void;
 };
 
 export const ScreenHeader = ({
@@ -16,8 +19,10 @@ export const ScreenHeader = ({
   onBackPress,
   showShoppingCart = true,
   titleUppercase = true,
+  rightIcon,
+  onRightIconPress,
 }: ScreenHeaderProps) => {
-  // const navigation = useAppNavigation();
+  const navigation = useAppNavigation();
 
   return (
     <View style={styles.headerContainer}>
@@ -32,10 +37,20 @@ export const ScreenHeader = ({
         {titleUppercase ? title.toUpperCase() : title}
       </Text>
       <View style={styles.iconContainer}>
-        {showShoppingCart && (
-          <TouchableOpacity onPress={() => {}}>
-            <ShoppingCartIcon width={24} height={24} />
+        {rightIcon ? (
+          <TouchableOpacity onPress={onRightIconPress}>
+            {rightIcon}
           </TouchableOpacity>
+        ) : (
+          showShoppingCart && (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('ShoppingCart');
+              }}
+            >
+              <ShoppingCartIcon width={24} height={24} />
+            </TouchableOpacity>
+          )
         )}
       </View>
     </View>
