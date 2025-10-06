@@ -22,6 +22,7 @@ import { formatDataOrder } from '@/utils/formatDataOrder';
 import { createOrder } from '@/services/order';
 import { removeSelectedItems, setCheckoutForm } from '@/stores/shoppingCart';
 import { OrderSummaryFooter } from '@/components/organisms/product/OrderSummaryFooter';
+import { SCREEN_LIST } from '@/constants/screen';
 
 export default function ShoppingCartScreen() {
   const navigation = useAppNavigation();
@@ -102,6 +103,7 @@ export default function ShoppingCartScreen() {
           if (id) {
             dispatch(removeSelectedItems());
             handleAfterSubmit('success');
+            navigation.navigate(SCREEN_LIST.ORDER_SUCCESSFUL);
           } else {
             throw new Error('Order creation failed');
           }
@@ -112,7 +114,7 @@ export default function ShoppingCartScreen() {
       }
     } else {
       dispatch(setCheckoutForm(formData));
-      navigation.navigate('PaymentInformation');
+      navigation.navigate(SCREEN_LIST.PAYMENT_INFORMATION);
     }
   };
 
@@ -136,7 +138,7 @@ export default function ShoppingCartScreen() {
     <SafeAreaView style={commonStyles.container}>
       <ScreenHeader
         title={SCREEN_LIST_TITLE.CHECKOUT}
-        onBackPress={() => navigation.goBack()}
+        onBackPress={() => navigation.navigate('ShoppingCart')}
         showShoppingCart={false}
       />
       <View style={styles.body}>

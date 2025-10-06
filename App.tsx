@@ -7,6 +7,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { WEB_CLIENT_ID } from '@env';
 import Toast from 'react-native-toast-message';
 import { ConfirmProvider } from '@/hooks/useConfirmDialog';
+import { useFirebaseNotifications } from '@/hooks/useFCM';
 
 GoogleSignin.configure({
   webClientId: WEB_CLIENT_ID,
@@ -15,6 +16,7 @@ GoogleSignin.configure({
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  useFirebaseNotifications();
 
   return (
     <SafeAreaProvider>

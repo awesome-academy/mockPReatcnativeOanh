@@ -20,6 +20,7 @@ export const SCREEN_LIST_TITLE = {
   SHOPPING_CART: 'Giỏ hàng',
   CHECKOUT: 'Thanh toán',
   ORDER_SUCCESS: 'Đặt hàng thành công',
+  NOTIFICATION: 'Thông báo',
 };
 
 export const PRODUCT_TYPE = {
@@ -54,7 +55,10 @@ export const TRANSPORT_METHOD_TITLE: Record<TRANSPORT_METHOD_CODE, string> = {
   [TRANSPORT_METHOD_CODE.COD]: 'Giao hàng COD - 20.000đ',
 };
 
-export const TRANSPORT_METHOD_DESCRIPTION: Record<TRANSPORT_METHOD_CODE, string> = {
+export const TRANSPORT_METHOD_DESCRIPTION: Record<
+  TRANSPORT_METHOD_CODE,
+  string
+> = {
   [TRANSPORT_METHOD_CODE.FAST]: 'Dự kiến giao hàng sau 2-3 ngày',
   [TRANSPORT_METHOD_CODE.COD]: 'Dự kiến giao hàng sau 3-5 ngày',
 };

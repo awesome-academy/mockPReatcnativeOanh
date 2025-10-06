@@ -28,60 +28,58 @@ import { fetchOrderHistory } from '@/stores/orderHistory';
 export default function OrderHistoryList() {
   const navigation = useAppNavigation();
   const dispatch = useDispatch<AppDispatch>();
-  const { orders, loading, error } = useSelector(
+  const { orders, loading, loadingMore, error, lastVisibleId } = useSelector(
     (state: RootState) => state.orderHistory,
   );
+  const pageSize = 10;
 
   useEffect(() => {
-    dispatch(fetchOrderHistory());
+    dispatch(fetchOrderHistory({ pageSize }));
   }, [dispatch]);
+
+  const loadMoreOrders = () => {
+    if (!loadingMore && lastVisibleId) {
+      dispatch(fetchOrderHistory({ pageSize, lastVisibleId }));
+    }
+  };
 
   const renderItem = useCallback(
     ({ id, products, order_date, status }: Order) => (
-      <>
-        {products?.length > 0 ? (
-          <TouchableOpacity
-            key={id}
-            onPress={() => navigation.navigate('OrderDetail', { id })}
-          >
-            <Text style={styles.orderDate}>{order_date}</Text>
-            <View style={styles.item}>
-              <Image
-                source={
-                  products[0]?.image
-                    ? { uri: products[0]?.image }
-                    : require('@/assets/images/image_failed.png')
-                }
-                style={styles.image}
-              />
-              <View style={styles.info}>
-                <Text
-                  style={[
-                    styles.orderStatus,
-                    status === ORDER_STATUS.SUCCESS
-                      ? commonStyles.success
-                      : commonStyles.fail,
-                  ]}
-                >
-                  {ORDER_STATUS_TITLE[status as ORDER_STATUS]}
-                </Text>
-                <Text style={styles.plantName}>{products[0]?.name}</Text>
-                <Text style={styles.plantQuantity}>
-                  {products[0]?.quantity
-                    ? `${products[0]?.quantity} sản phẩm`
-                    : NO_INFORMATION}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        ) : (
-          <Text style={commonStyles.defaultDescription}>
-            Không có sản phẩm nào
-          </Text>
-        )}
-      </>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('OrderDetail', { id })}
+      >
+        <Text style={styles.orderDate}>{order_date}</Text>
+        <View style={styles.item}>
+          <Image
+            source={
+              products[0]?.image
+                ? { uri: products[0]?.image }
+                : require('@/assets/images/image_failed.png')
+            }
+            style={styles.image}
+          />
+          <View style={styles.info}>
+            <Text
+              style={[
+                styles.orderStatus,
+                status === ORDER_STATUS.SUCCESS
+                  ? commonStyles.success
+                  : commonStyles.fail,
+              ]}
+            >
+              {ORDER_STATUS_TITLE[status as ORDER_STATUS]}
+            </Text>
+            <Text style={styles.plantName}>{products[0]?.name}</Text>
+            <Text style={styles.plantQuantity}>
+              {products[0]?.quantity
+                ? `${products[0]?.quantity} sản phẩm`
+                : NO_INFORMATION}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     ),
-    [navigation],
+    [],
   );
 
   if (loading)
@@ -95,19 +93,21 @@ export default function OrderHistoryList() {
         showShoppingCart={false}
       />
       <View style={styles.body}>
-        {!error &&
-          (orders.length ? (
-            <FlatList
-              data={orders}
-              keyExtractor={item => item.id.toString()}
-              numColumns={1}
-              renderItem={({ item }) => renderItem(item)}
-            />
-          ) : (
-            <Text style={commonStyles.center}>
-              Bạn không có đơn đặt hàng nào.
-            </Text>
-          ))}
+        {!error && (
+          <FlatList
+            data={orders}
+            keyExtractor={(item, index) => item?.id ?? `order-${index}`}
+            renderItem={({ item }) => renderItem(item)}
+            numColumns={1}
+            onEndReached={loadMoreOrders}
+            onEndReachedThreshold={0.5}
+            ListEmptyComponent={
+              <Text style={commonStyles.center}>
+                Hiện chưa có đơn đặt hàng nào
+              </Text>
+            }
+          />
+        )}
         {error && <Text style={commonStyles.center}>Error: {error}</Text>}
       </View>
       <AppNavbar activeTab="user" />

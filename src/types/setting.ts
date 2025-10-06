@@ -1,3 +1,4 @@
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { Profile } from './auth';
 
 export type Question = {
@@ -44,4 +45,14 @@ export type Order = {
   card_holder?: string | null;
   expiry_date?: string | null;
   cvv?: string | null;
+};
+
+export type Notification = {
+  created_at: FirebaseFirestoreTypes.Timestamp;
+  uid: string;
+  title: string;
+  order_id: string;
+  read: boolean;
+  price: number;
+  number_of_products: number;
 };
