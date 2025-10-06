@@ -117,7 +117,10 @@ export default function ShoppingCartScreen() {
               <Text style={styles.footerText}>Tạm tính</Text>
               <Text style={styles.total}>{total.toLocaleString()}đ</Text>
             </View>
-            <TouchableOpacity style={styles.buyButton}>
+            <TouchableOpacity
+              style={styles.buyButton}
+              onPress={() => navigation.navigate('Checkout')}
+            >
               <Text style={styles.buyText}>Tiến hành thanh toán</Text>
             </TouchableOpacity>
           </View>
