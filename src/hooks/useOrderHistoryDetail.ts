@@ -1,4 +1,4 @@
-import { getOrderById } from '@/api/setting';
+import { getOrderById } from '@/services/order';
 import { Order } from '@/types/setting';
 import { useState, useEffect, useCallback } from 'react';
 
