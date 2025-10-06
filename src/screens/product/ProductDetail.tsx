@@ -45,11 +45,11 @@ export default function ProductDetail({
   const addProductToShoppingCart = () => {
     dispatch(
       addToCart({
-        id: detail?.id,
-        name: detail?.name,
-        image: detail?.image,
-        price: detail?.price,
-        remaining_quantity: detail?.remaining_quantity,
+        id: detail?.id ?? '',
+        name: detail?.name ?? '',
+        image: detail?.image ?? '',
+        price: detail?.price ?? 0,
+        remaining_quantity: detail?.remaining_quantity ?? 0,
         quantity: count,
         selected: false,
         product_type: type,

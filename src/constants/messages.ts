@@ -16,3 +16,15 @@ export const AUTH_MESSAGES = {
   INVALID_CREDENTIALS: 'Email hoặc mật khẩu không chính xác.',
   ADDRESS_REQUIRED: 'Vui lòng nhập địa chỉ',
 };
+
+export const CARD_MESSAGES = {
+  CARD_NUMBER_REQUIRED: 'Số thẻ là bắt buộc',
+  INVALID_CARD_NUMBER: 'Số thẻ không hợp lệ (16 chữ số)',
+  CARD_HOLDER_REQUIRED: 'Tên chủ thẻ là bắt buộc',
+  INVALID_CARD_HOLDER: 'Tên chủ thẻ không hợp lệ',
+  EXPIRY_DATE_REQUIRED: 'Ngày hết hạn là bắt buộc',
+  INVALID_EXPIRY_DATE: 'Ngày hết hạn không hợp lệ (MM/YY)',
+  CARD_EXPIRED: 'Thẻ đã hết hạn',
+  CVV_REQUIRED: 'CVV là bắt buộc',
+  INVALID_CVV: 'CVV phải có 3-4 chữ số',
+};

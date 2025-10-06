@@ -82,4 +82,9 @@ export const commonStyles = StyleSheet.create({
   fail: {
     color: BASE_COLORS.error,
   },
+  text_14_500: {
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '500',
+  },
 });

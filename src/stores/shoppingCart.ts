@@ -1,26 +1,35 @@
-import { Product } from '@/types/product';
+import {
+  PAYMENT_METHOD_CODE,
+  TRANSPORT_METHOD_CODE,
+} from '@/constants/product';
+import { CheckoutFormType, Product } from '@/types/product';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface shoppingCartState {
   items: Product[];
+  checkoutForm: CheckoutFormType;
 }
 
 const initialState: shoppingCartState = {
   items: [],
+  checkoutForm: {
+    transport_method: TRANSPORT_METHOD_CODE.FAST,
+    payment_method: PAYMENT_METHOD_CODE.VISA_MASTERCARD,
+  },
 };
 
 const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
   initialState,
   reducers: {
-    addToCart: (
-      state,
-      action: PayloadAction<Product>
-    ) => {
+    addToCart: (state, action: PayloadAction<Product>) => {
       const product = action.payload;
       const existing = state.items.find(item => item.id === product.id);
       if (existing) {
-        existing.quantity += typeof product.quantity === 'number' && product.quantity > 0 ? product.quantity : 1;
+        existing.quantity +=
+          typeof product.quantity === 'number' && product.quantity > 0
+            ? product.quantity
+            : 1;
       } else {
         state.items.push({ ...product, selected: product.selected ?? false });
       }
@@ -49,6 +58,21 @@ const shoppingCartSlice = createSlice({
         selected: false,
       }));
     },
+    removeSelectedItems: state => {
+      state.items = state.items.filter(item => !item.selected);
+    },
+    setCheckoutForm: (
+      state,
+      action: PayloadAction<Partial<CheckoutFormType>>,
+    ) => {
+      state.checkoutForm = {
+        ...state.checkoutForm,
+        ...action.payload,
+      };
+    },
+    resetCheckoutForm: state => {
+      state.checkoutForm = initialState.checkoutForm;
+    },
   },
 });
 
@@ -58,7 +82,10 @@ export const {
   decrease,
   toggleSelect,
   removeItem,
+  removeSelectedItems,
   resetSelected,
   removeAllItems,
+  setCheckoutForm,
+  resetCheckoutForm,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

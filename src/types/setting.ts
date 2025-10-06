@@ -25,7 +25,7 @@ export type Step = {
 };
 
 export type Order = {
-  id: string;
+  id?: string;
   user: Profile;
   products: {
     id: string;
@@ -38,6 +38,10 @@ export type Order = {
   payment_amount: number;
   transport_method: number;
   payment_method: number;
-  status: number;
-  order_date: string;
+  status?: number;
+  order_date?: string;
+  card_number?: string | null;
+  card_holder?: string | null;
+  expiry_date?: string | null;
+  cvv?: string | null;
 };

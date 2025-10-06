@@ -46,15 +46,31 @@ export enum TRANSPORT_METHOD_CODE {
   COD = 1,
 }
 
+export type TransportMethod =
+  (typeof TRANSPORT_METHOD_CODE)[keyof typeof TRANSPORT_METHOD_CODE];
+
 export const TRANSPORT_METHOD_TITLE: Record<TRANSPORT_METHOD_CODE, string> = {
   [TRANSPORT_METHOD_CODE.FAST]: 'Giao hàng Nhanh - 15.000đ',
   [TRANSPORT_METHOD_CODE.COD]: 'Giao hàng COD - 20.000đ',
+};
+
+export const TRANSPORT_METHOD_DESCRIPTION: Record<TRANSPORT_METHOD_CODE, string> = {
+  [TRANSPORT_METHOD_CODE.FAST]: 'Dự kiến giao hàng sau 2-3 ngày',
+  [TRANSPORT_METHOD_CODE.COD]: 'Dự kiến giao hàng sau 3-5 ngày',
+};
+
+export const DELIVERY_FEE = {
+  [TRANSPORT_METHOD_CODE.COD]: 20000,
+  [TRANSPORT_METHOD_CODE.FAST]: 15000,
 };
 
 export enum PAYMENT_METHOD_CODE {
   VISA_MASTERCARD = 0,
   ATM_CARD = 1,
 }
+
+export type PaymentMethod =
+  (typeof PAYMENT_METHOD_CODE)[keyof typeof PAYMENT_METHOD_CODE];
 
 export const PAYMENT_METHOD_TITLE: Record<PAYMENT_METHOD_CODE, string> = {
   [PAYMENT_METHOD_CODE.VISA_MASTERCARD]: 'Thẻ VISA/MASTERCARD',
@@ -70,9 +86,6 @@ export const ORDER_STATUS_TITLE: Record<ORDER_STATUS, string> = {
   [ORDER_STATUS.SUCCESS]: 'Đặt hàng thành công',
   [ORDER_STATUS.CANCELLED]: 'Đã hủy đơn hàng',
 };
-
-export const CASH_ON_DELIVERY_FEE = 20000;
-export const FAST_DELIVERY_FEE = 15000;
 
 export const CASH_ON_DELIVERY_TEXT = 'Thanh toán khi nhận hàng';
 export const NO_INFORMATION = 'Không có thông tin';
