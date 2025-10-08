@@ -7,6 +7,7 @@ import LoginScreen from '@/screens/auth/Login';
 import RegisterScreen from '@/screens/auth/Register';
 import HomeScreen from '@/screens/home/Home';
 import SearchScreen from '@/screens/search/Search';
+import NotificationScreen from '@/screens/home/NotificationScreen';
 import ProfileScreen from '@/screens/setting/Profile';
 import EditProfile from '@/screens/setting/EditProfile';
 import ListPlantPot from '@/screens/product/ListPlantPot';
@@ -21,6 +22,7 @@ import OrderDetail from '@/screens/setting/OrderDetail';
 import ShoppingCartScreen from '@/screens/shoppingCart/ShoppingCart';
 import Checkout from '@/screens/shoppingCart/Checkout';
 import PaymentInformation from '@/screens/shoppingCart/PaymentInformation';
+import OrderSuccessfulScreen from '@/screens/shoppingCart/OrderSuccessful';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -30,6 +32,7 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   Home: undefined;
   Search: undefined;
+  Notification: undefined;
   Profile: undefined;
   EditProfile: undefined;
   ListPlantPot: undefined;
@@ -47,6 +50,7 @@ export type AppStackParamList = {
   ShoppingCart: undefined;
   Checkout: undefined;
   PaymentInformation: undefined;
+  OrderSuccessful: undefined;
 };
 
 const Auth = createNativeStackNavigator<AuthStackParamList>();
@@ -80,6 +84,11 @@ const AppStack = () => {
       <App.Screen
         name="Search"
         component={SearchScreen}
+        options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="Notification"
+        component={NotificationScreen}
         options={{ headerShown: false }}
       />
       <App.Screen
@@ -151,6 +160,11 @@ const AppStack = () => {
         name="PaymentInformation"
         component={PaymentInformation}
         options={{ headerShown: false }}
+      />
+      <App.Screen
+        name="OrderSuccessful"
+        component={OrderSuccessfulScreen}
+        options={{ headerShown: false, gestureEnabled: false }}
       />
     </App.Navigator>
   );

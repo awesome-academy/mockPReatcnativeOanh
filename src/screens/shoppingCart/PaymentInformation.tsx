@@ -29,6 +29,7 @@ import { formatDataOrder } from '@/utils/formatDataOrder';
 import { createOrder } from '@/services/order';
 import { removeSelectedItems } from '@/stores/shoppingCart';
 import Toast from 'react-native-toast-message';
+import { SCREEN_LIST } from '@/constants/screen';
 
 export default function PaymentInformation() {
   const navigation = useAppNavigation();
@@ -83,6 +84,7 @@ export default function PaymentInformation() {
         if (id) {
           dispatch(removeSelectedItems());
           handleAfterSubmit('success');
+          navigation.navigate(SCREEN_LIST.ORDER_SUCCESSFUL);
         } else {
           throw new Error('Order creation failed');
         }

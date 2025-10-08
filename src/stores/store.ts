@@ -8,7 +8,8 @@ import questionStore from './question';
 import tutorialStore from './tutorial';
 import orderHistoryStore from './orderHistory';
 import searchStore from './search';
-import shoppingCartStore from './shoppingCart'
+import shoppingCartStore from './shoppingCart';
+import notificationStore from './notification';
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
     orderHistory: orderHistoryStore,
     search: searchStore,
     shoppingCart: shoppingCartStore,
+    notification: notificationStore,
   },
 });
 
