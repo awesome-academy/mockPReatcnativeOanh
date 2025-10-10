@@ -13,9 +13,11 @@ import {
   startAfter,
   limit,
   getDoc,
+  where,
 } from '@react-native-firebase/firestore';
 import notifee from '@notifee/react-native';
 import auth from '@react-native-firebase/auth';
+import { store } from '@/stores/store';
 
 const firestore = getFirestore(getApp());
 
@@ -65,6 +67,11 @@ export const getListOrderHistory = async (
   lastVisibleId?: string,
 ): Promise<{ orders: Order[]; lastVisibleId: string | null }> => {
   try {
+    const { user } = store.getState().auth;
+    if (!user) {
+      throw new Error('User not authenticated');
+    }
+
     const ordersCollection = collection(firestore, 'orders');
 
     let lastDoc: any = null;
@@ -76,6 +83,7 @@ export const getListOrderHistory = async (
 
     let ordersQuery = query(
       ordersCollection,
+      where('user.uid', '==', user.uid),
       orderBy('order_date', 'desc'),
       limit(pageSize),
     );
