@@ -1,3 +1,4 @@
+import { store } from '@/stores/store';
 import { Notification } from '@/types/setting';
 import { getApp } from '@react-native-firebase/app';
 import {
@@ -10,6 +11,7 @@ import {
   startAfter,
   limit,
   getDoc,
+  where,
 } from '@react-native-firebase/firestore';
 
 const firestore = getFirestore(getApp());
@@ -19,6 +21,10 @@ export const getListNotification = async (
   lastVisibleId?: string,
 ): Promise<{ notifications: Notification[]; lastVisibleId: string | null }> => {
   try {
+    const { user } = store.getState().auth;
+    if (!user) {
+      throw new Error('User not authenticated');
+    }
     const notificationsCollection = collection(firestore, 'notifications');
 
     let lastDoc: any = null;
@@ -30,6 +36,7 @@ export const getListNotification = async (
 
     let notificationsQuery = query(
       notificationsCollection,
+      where('uid', '==', user.uid),
       orderBy('created_at', 'desc'),
       limit(pageSize),
     );
@@ -43,7 +50,7 @@ export const getListNotification = async (
       (docSnap: { data: () => any; id: any }) => {
         const data = docSnap.data();
         return {
-          uid: docSnap.id,
+          id: docSnap.id,
           ...data,
           created_at:
             data.created_at?.toDate?.().toLocaleDateString('vi-VN') ?? '',

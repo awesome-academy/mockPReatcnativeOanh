@@ -48,6 +48,7 @@ export type Order = {
 };
 
 export type Notification = {
+  id: string;
   created_at: FirebaseFirestoreTypes.Timestamp;
   uid: string;
   title: string;

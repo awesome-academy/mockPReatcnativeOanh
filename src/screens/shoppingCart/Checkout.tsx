@@ -138,7 +138,7 @@ export default function ShoppingCartScreen() {
     <SafeAreaView style={commonStyles.container}>
       <ScreenHeader
         title={SCREEN_LIST_TITLE.CHECKOUT}
-        onBackPress={() => navigation.navigate('ShoppingCart')}
+        onBackPress={() => navigation.goBack()}
         showShoppingCart={false}
       />
       <View style={styles.body}>

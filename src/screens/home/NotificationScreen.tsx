@@ -36,7 +36,9 @@ export default function NotificationScreen() {
   const renderItem = useCallback(
     ({ created_at, title, price, number_of_products }: Notification) => (
       <View>
-        <Text style={styles.orderDate}>{created_at?.toString() ?? NO_INFORMATION}</Text>
+        <Text style={styles.orderDate}>
+          {created_at?.toString() ?? NO_INFORMATION}
+        </Text>
         <View style={styles.item}>
           <View style={styles.info}>
             <Text style={styles.orderStatus}>{title ?? NO_INFORMATION}</Text>
@@ -68,7 +70,7 @@ export default function NotificationScreen() {
       />
       <FlatList
         data={notifications}
-        keyExtractor={(item, index) => item?.uid ?? `noti-${index}`}
+        keyExtractor={(item, index) => item.id ?? `noti-${index}`}
         renderItem={({ item }) => renderItem(item)}
         onEndReached={loadMoreNotifications}
         onEndReachedThreshold={0.5}
